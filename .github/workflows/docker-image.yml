@@ -31,3 +31,15 @@ jobs:
           file: ./service1/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service1:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:buildcache,mode=max
+          
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: service2
+          file: ./service2/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service2:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:buildcache,mode=max
