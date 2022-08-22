@@ -1,0 +1,9 @@
+version: '2'
+services:
+  service1:
+    image: s1
+    hostname: service.example.com
+
+  service2:
+    image: s2
+   
