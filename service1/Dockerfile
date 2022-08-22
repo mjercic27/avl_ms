@@ -6,5 +6,6 @@ RUN chmod +x /usr/bin/fwatchdog
 ENV fprocess="python entrypoint.py"
 COPY entrypoint.py /
 
+
 EXPOSE 8080
 CMD [ "fwatchdog" ]
