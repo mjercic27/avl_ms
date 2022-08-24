@@ -22,19 +22,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - 
-        name: Generate Docker metadata
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: |
-            docker.io/${{secrets.DOCKER_HUB_USERNAME}}/service1
-          tags: |
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-          flavor: |
-            latest=true
+  
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -45,9 +33,9 @@ jobs:
           context: service1
           file: ./service1/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service1:${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:${{ steps.meta.outputs.tags }}
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:${{ steps.meta.outputs.tags }},mode=max
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service1
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:latest
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:latest,mode=max
       -  
         name: Build and push 2
         uses: docker/build-push-action@v2
@@ -55,6 +43,6 @@ jobs:
           context: service2
           file: ./service2/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service2:${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service2:${{ steps.meta.outputs.tags }}
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service2:${{ steps.meta.outputs.tags }},mode=max
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service2
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service2:latest
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service2:latest,mode=max
