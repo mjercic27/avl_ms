@@ -21,13 +21,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - 
-        name: Get latest tag
-        id: latest_tag
-        uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.1
+          
+      - name: Scan Docker Repository
+        uses: dhet/scan-docker-tags-action@v1.0.1
         with:
-          org: ${{ secrets.DOCKER_HUB_USERNAME }}
-          repo: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          image: service1
+          max-age-minutes: 15
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          
+      - name: Print
+        run: "echo 'Recent updates: ${{ steps.scan.outputs.tags }}'"
           
       - 
         name: Check outputs
