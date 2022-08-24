@@ -43,7 +43,7 @@ jobs:
           context: service1
           file: ./service1/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service1:
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service1
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:latest
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:latest,mode=max
       -  
