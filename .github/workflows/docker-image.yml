@@ -32,11 +32,6 @@ jobs:
           
       - name: Print
         run: "echo 'Recent updates: ${{ steps.scan.outputs.tags }}'"
-          
-      - 
-        name: Check outputs
-        run: |
-          echo "Latest Image Tag - ${{ steps.latest_tag.outputs.tag }}"
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
