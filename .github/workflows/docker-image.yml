@@ -41,7 +41,7 @@ jobs:
           context: service1
           file: ./service1/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service1
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service1:v1.0
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:latest
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:latest,mode=max
       -  
@@ -51,6 +51,6 @@ jobs:
           context: service2
           file: ./service2/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service2
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service2:v1.0
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service2:latest
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service2:latest,mode=max
