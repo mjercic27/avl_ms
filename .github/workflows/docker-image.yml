@@ -47,7 +47,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service1:${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:latest
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:${{ steps.meta.outputs.tags }}},mode=max
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:${{ steps.meta.outputs.tags }},mode=max
       -  
         name: Build and push 2
         uses: docker/build-push-action@v2
