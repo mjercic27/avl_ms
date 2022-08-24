@@ -28,7 +28,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            docker.io/${{secrets.DOCKER_HUB_USERNAME/service1 }}
+            docker.io/${{secrets.DOCKER_HUB_USERNAME}}/service1
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
