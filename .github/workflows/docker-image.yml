@@ -46,7 +46,7 @@ jobs:
           file: ./service1/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service1:${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:${{ steps.meta.outputs.tags }}
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service1:${{ steps.meta.outputs.tags }},mode=max
       -  
         name: Build and push 2
@@ -56,5 +56,5 @@ jobs:
           file: ./service2/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/service2:${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service2:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service2:${{ steps.meta.outputs.tags }}
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/service2:${{ steps.meta.outputs.tags }},mode=max
